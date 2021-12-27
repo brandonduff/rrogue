@@ -1,6 +1,6 @@
 module Rendering
   include Curses
-  
+
   def init
     init_screen
     noecho
@@ -13,9 +13,9 @@ module Rendering
     bwin.refresh
     win = bwin.subwin(room.height, room.width, 1, 1)
 
-    room.each do |_space|
-      win.addch('.')
+    room.each do |char|
+      win.addch(char.to_s)
     end
-    bwin 
+    win
   end
 end

@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 require 'bundler/setup'
-require "rrogue"
+require 'rrogue'
 require 'rendering'
 
 include Rendering
@@ -9,6 +9,20 @@ include Rendering
 init
 
 room = Rrogue::Room.new(3, 3)
+player = Rrogue::Player.new
+room.put(1, 1, player)
 win = draw_room(room)
 
-win.getch
+loop do
+  case win.getch
+  when 'e'
+    room.move(player, player.row - 1, player.col)
+  when 'f'
+    room.move(player, player.row, player.col + 1)
+  when 's'
+    room.move(player, player.row, player.col - 1)
+  when 'd'
+    room.move(player, player.row + 1, player.col)
+  end
+  win = draw_room(room)
+end
