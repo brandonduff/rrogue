@@ -8,7 +8,7 @@ include Rendering
 
 init
 
-room = Rrogue::Room.new(3, 3)
+room = Rrogue::Room.new(10, 10)
 player = Rrogue::Player.new
 room.put(1, 1, player)
 win = draw_room(room)
