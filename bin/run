@@ -1,0 +1,14 @@
+#!/usr/bin/env ruby
+
+require 'bundler/setup'
+require "rrogue"
+require 'rendering'
+
+include Rendering
+
+init
+
+room = Rrogue::Room.new(3, 3)
+win = draw_room(room)
+
+win.getch
