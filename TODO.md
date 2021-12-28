@@ -5,6 +5,7 @@
 	- [x] Rendering a room
 	- [x] Rendering a player character
 	- [x] Taking input and moving character in response
+* Sight/light sources
 * Generating levels
 * Monsters
 * Real-time (ticking 60fps, not based on player input)

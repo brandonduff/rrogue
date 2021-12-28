@@ -5,13 +5,15 @@ require 'rrogue'
 require 'rendering'
 
 include Rendering
+include Curses
 
 init
 
 room = Rrogue::Room.new(10, 10)
 player = Rrogue::Player.new
 room.put(1, 1, player)
-win = draw_room(room)
+main_view = Window.new(50, 50, 0, 0)
+win = draw_room(room, main_view)
 
 loop do
   case win.getch
@@ -24,5 +26,5 @@ loop do
   when 'd'
     room.move(player, player.row + 1, player.col)
   end
-  win = draw_room(room)
+  win = draw_room(room, main_view)
 end

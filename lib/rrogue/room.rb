@@ -3,6 +3,10 @@ module Rrogue
     def self.space
       '.'
     end
+
+    def self.wall
+      '#'
+    end
   end
 
 	class Room
@@ -16,6 +20,12 @@ module Rrogue
         @width.times.map do |col|
           Tile.space
         end
+      end
+      @rows[0] = Array.new(@width, Tile.wall)
+      @rows[@height - 1] = Array.new(@width, Tile.wall)
+      @height.times do |i|
+        @rows[i][0] = Tile.wall
+        @rows[i][@width - 1] = Tile.wall
       end
 		end
 
@@ -31,6 +41,7 @@ module Rrogue
 
     def move(object, row, col)
       return if row < 0 || row >= height || col >= width || col < 0
+      return if @rows[row][col] == Tile.wall
       current_row, current_col = find_object(object)
       @rows[current_row][current_col] = Tile.space
       put(row, col, object)

@@ -18,13 +18,13 @@ module Rrogue
     def test_moving
       player = Player.new
       room = Room.new(3, 3)
-      room.put(1, 1, player)
+      room.put(2, 2, player)
 
-      room.move(player, 0, 1)
+      room.move(player, 1, 1)
 
-      assert_equal(player, room.at(0, 1))
-      assert_equal(Tile.space, room.at(1, 1))
-      assert_equal(0, player.row)
+      assert_equal(player, room.at(1, 1))
+      assert_equal(Tile.space, room.at(2, 2))
+      assert_equal(1, player.row)
       assert_equal(1, player.col)
     end
 
