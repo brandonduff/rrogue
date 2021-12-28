@@ -23,7 +23,7 @@ module Rrogue
       room.move(player, 1, 1)
 
       assert_equal(player, room.at(1, 1))
-      assert_equal(Tile.space, room.at(2, 2))
+      assert(room.at(2, 2).space?)
       assert_equal(1, player.row)
       assert_equal(1, player.col)
     end
@@ -31,16 +31,19 @@ module Rrogue
     def test_disallow_moving_into_walls
       player = Player.new
       room = Room.new(3, 3)
-      room.put(0, 1, player)
+      room.put(1, 1, player)
 
+      # moving out of bounds
       room.move(player, -1, 1)
       room.move(player, 1, 3)
       room.move(player, 3, 1)
       room.move(player, 1, -1)
 
-      assert_equal(player, room.at(0, 1))
-      assert_equal(Tile.space, room.at(1, 1))
-      assert_equal(0, player.row)
+      # moving into surrounding wall sprite
+      room.move(player, 0, 0)
+
+      assert_equal(player, room.at(1, 1))
+      assert_equal(1, player.row)
       assert_equal(1, player.col)
     end
   end

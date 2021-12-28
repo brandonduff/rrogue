@@ -1,11 +1,27 @@
 module Rrogue
   class Tile
     def self.space
-      '.'
+      new('.')
     end
 
     def self.wall
-      '#'
+      new('#')
+    end
+
+    def initialize(sprite)
+      @sprite = sprite
+    end
+
+    def to_s
+      @sprite
+    end
+    
+    def space?
+      @sprite == '.'
+    end
+
+    def wall?
+      @sprite == '#'
     end
   end
 
@@ -41,7 +57,7 @@ module Rrogue
 
     def move(object, row, col)
       return if row < 0 || row >= height || col >= width || col < 0
-      return if @rows[row][col] == Tile.wall
+      return if @rows[row][col].wall?
       current_row, current_col = find_object(object)
       @rows[current_row][current_col] = Tile.space
       put(row, col, object)
