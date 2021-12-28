@@ -46,5 +46,20 @@ module Rrogue
       assert_equal(1, player.row)
       assert_equal(1, player.col)
     end
+
+    def test_marking_tiles_around_the_player_visible
+      player = Player.new
+      room = Room.new(4, 4)
+      room.put(0, 0, player)
+
+      room.move(player, 2, 2)
+
+      refute(room.at(0, 0).visible?)
+      assert(room.at(2, 1).visible?)
+
+      assert(room.at(2,3).visible?)
+      assert(room.at(1, 2).visible?)
+      assert(room.at(3, 2).visible?)
+    end
   end
 end

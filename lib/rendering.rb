@@ -8,8 +8,9 @@ module Rendering
   end
 
   def draw_room(room, view)
-    room.each_with_object(view.subwin(room.height, room.width, 1, 1)) do |char, win|
-      win.addch(char.to_s)
+    renderer = Rrogue::TileRenderer.new
+    room.each_with_object(view.subwin(room.height, room.width, 1, 1)) do |tile, win|
+      win.addch(tile.render)
     end
   end
 end

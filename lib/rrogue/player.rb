@@ -5,5 +5,9 @@ module Rrogue
     def to_s
       '@'
     end
+
+    def render
+      to_s
+    end
   end
 end

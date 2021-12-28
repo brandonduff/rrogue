@@ -1,30 +1,4 @@
 module Rrogue
-  class Tile
-    def self.space
-      new('.')
-    end
-
-    def self.wall
-      new('#')
-    end
-
-    def initialize(sprite)
-      @sprite = sprite
-    end
-
-    def to_s
-      @sprite
-    end
-    
-    def space?
-      @sprite == '.'
-    end
-
-    def wall?
-      @sprite == '#'
-    end
-  end
-
 	class Room
     include Enumerable
     attr_reader :height, :width
@@ -37,8 +11,8 @@ module Rrogue
           Tile.space
         end
       end
-      @rows[0] = Array.new(@width, Tile.wall)
-      @rows[@height - 1] = Array.new(@width, Tile.wall)
+      @rows[0] = Array.new(@width) { Tile.wall }
+      @rows[@height - 1] = Array.new(@width) { Tile.wall }
       @height.times do |i|
         @rows[i][0] = Tile.wall
         @rows[i][@width - 1] = Tile.wall
@@ -60,7 +34,16 @@ module Rrogue
       return if @rows[row][col].wall?
       current_row, current_col = find_object(object)
       @rows[current_row][current_col] = Tile.space
+      reset_visibility(row, col)
       put(row, col, object)
+    end
+
+    def reset_visibility(row, col)
+      each(&:mark_shrouded)
+      at(row,  col - 1).mark_visible
+      at(row, col + 1).mark_visible
+      at(row - 1, col).mark_visible
+      at(row + 1, col).mark_visible
     end
 
     def find_object(object)
