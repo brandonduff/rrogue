@@ -1,16 +1,6 @@
 module Rrogue
-  class TileRenderer
-    def render(tile)
-      if tile.visible?
-        tile.to_s
-      else
-        ' '
-      end
-    end
-  end
-
   class Tile
-    attr_accessor :visibility
+    attr_accessor :visibility, :seen
 
     def self.space
       new('.')
@@ -28,7 +18,12 @@ module Rrogue
       visibility == :visible
     end
 
+    def seen?
+      @seen
+    end
+
     def mark_visible
+      @seen = true
       @visibility = :visible
     end
 
@@ -37,7 +32,11 @@ module Rrogue
     end
 
     def render
-      TileRenderer.new.render(self)
+      if visible? || seen?
+        to_s
+      else
+        ' '
+      end
     end
 
     def to_s

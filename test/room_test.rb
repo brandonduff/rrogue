@@ -57,7 +57,7 @@ module Rrogue
       refute(room.at(0, 0).visible?)
       assert(room.at(2, 1).visible?)
 
-      assert(room.at(2,3).visible?)
+      assert(room.at(2, 3).visible?)
       assert(room.at(1, 2).visible?)
       assert(room.at(3, 2).visible?)
     end

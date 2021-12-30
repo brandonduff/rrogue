@@ -6,8 +6,9 @@
 	- [x] Rendering a player character
 	- [x] Taking input and moving character in response
 * Sight/light sources
-	- [ ] Tiles can be visited, visible, or shrouded
-	- [ ] Moving updates the visibility of tiles
+	- [x] Tiles can be visited, visible, or shrouded
+	- [x] Moving updates the visibility of tiles
+	- [ ] Independent light sources (separate from the player)
 * Generating levels
 * Monsters
 * Real-time (ticking 60fps, not based on player input)
