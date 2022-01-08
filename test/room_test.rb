@@ -23,7 +23,7 @@ module Rrogue
       room.move(player, 1, 1)
 
       assert_equal(player, room.at(1, 1))
-      assert(room.at(2, 2).space?)
+      refute_equal(player, room.at(2, 2))
       assert_equal(1, player.row)
       assert_equal(1, player.col)
     end

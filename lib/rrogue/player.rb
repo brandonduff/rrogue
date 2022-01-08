@@ -6,6 +6,10 @@ module Rrogue
       '@'
     end
 
+    def visible?
+      true
+    end
+
     def render
       to_s
     end

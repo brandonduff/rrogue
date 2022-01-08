@@ -42,10 +42,6 @@ module Rrogue
     def to_s
       @sprite
     end
-    
-    def space?
-      @sprite == '.'
-    end
 
     def wall?
       @sprite == '#'
