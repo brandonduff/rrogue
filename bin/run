@@ -18,13 +18,13 @@ win = draw_room(room, main_view)
 
 loop do
   case win.getch
-  when 'e'
+  when 'k'
     room.move(player, player.row - 1, player.col)
-  when 'f'
+  when 'l'
     room.move(player, player.row, player.col + 1)
-  when 's'
+  when 'h'
     room.move(player, player.row, player.col - 1)
-  when 'd'
+  when 'j'
     room.move(player, player.row + 1, player.col)
   end
   win = draw_room(room, main_view)
