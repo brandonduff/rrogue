@@ -16,20 +16,20 @@ module Rrogue
     end
 
     def test_moving
-      player = Player.new
+      player = Entity.new('@')
       room = Room.new(3, 3)
       room.put(2, 2, player)
 
       room.move(player, 1, 1)
 
-      assert_equal(player, room.at(1, 1))
-      refute_equal(player, room.at(2, 2))
+      assert_equal(player, room.at(1, 1).entity)
+      refute_equal(player, room.at(2, 2).entity)
       assert_equal(1, player.row)
       assert_equal(1, player.col)
     end
 
     def test_disallow_moving_into_walls
-      player = Player.new
+      player = Entity.new('@')
       room = Room.new(3, 3)
       room.put(1, 1, player)
 
@@ -42,13 +42,13 @@ module Rrogue
       # moving into surrounding wall sprite
       room.move(player, 0, 0)
 
-      assert_equal(player, room.at(1, 1))
+      assert_equal(player, room.at(1, 1).entity)
       assert_equal(1, player.row)
       assert_equal(1, player.col)
     end
 
     def test_marking_tiles_around_the_player_visible
-      player = Player.new
+      player = Entity.new('@')
       room = Room.new(4, 4)
       room.put(0, 0, player)
 
@@ -56,7 +56,7 @@ module Rrogue
 
       refute(room.at(0, 0).visible?)
       assert(room.at(2, 1).visible?)
-
+      assert(room.at(2, 2).visible?)
       assert(room.at(2, 3).visible?)
       assert(room.at(1, 2).visible?)
       assert(room.at(3, 2).visible?)

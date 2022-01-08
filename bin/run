@@ -10,8 +10,9 @@ include Curses
 init
 
 room = Rrogue::Room.new(10, 10)
-player = Rrogue::Player.new
+player = Rrogue::Entity.new('@')
 room.put(1, 1, player)
+room.reset_visibility(1, 1)
 main_view = Window.new(50, 50, 0, 0)
 win = draw_room(room, main_view)
 

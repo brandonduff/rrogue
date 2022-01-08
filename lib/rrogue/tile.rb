@@ -1,6 +1,6 @@
 module Rrogue
   class Tile
-    attr_accessor :visibility, :seen
+    attr_accessor :visibility, :seen, :entity
 
     def self.space
       new('.')
@@ -11,7 +11,7 @@ module Rrogue
     end
 
     def initialize(sprite)
-      @sprite = sprite
+      @entity = Entity.new(sprite)
     end
 
     def visible?
@@ -33,18 +33,14 @@ module Rrogue
 
     def render
       if visible? || seen?
-        to_s
+        @entity.render
       else
         ' '
       end
     end
 
-    def to_s
-      @sprite
-    end
-
-    def wall?
-      @sprite == '#'
+    def passable?
+      @entity.passable?
     end
   end
 end

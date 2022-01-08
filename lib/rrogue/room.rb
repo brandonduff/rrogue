@@ -22,7 +22,7 @@ module Rrogue
     def put(row, col, object)
       object.row = row
       object.col = col
-      @rows[row][col] = object
+      @rows[row][col].entity = object
     end
 
     def at(row, col)
@@ -31,7 +31,7 @@ module Rrogue
 
     def move(object, row, col)
       return if row < 0 || row >= height || col >= width || col < 0
-      return if @rows[row][col].wall?
+      return unless @rows[row][col].passable?
       current_row, current_col = find_object(object)
       @rows[current_row][current_col] = Tile.space
       reset_visibility(row, col)
@@ -40,6 +40,7 @@ module Rrogue
 
     def reset_visibility(row, col)
       each(&:mark_shrouded)
+      at(row, col).mark_visible
       at(row,  col - 1).mark_visible
       at(row, col + 1).mark_visible
       at(row - 1, col).mark_visible
@@ -49,7 +50,7 @@ module Rrogue
     def find_object(object)
       @rows.each_with_index do |row, row_index|
         row.each_with_index do |cell, col_index|  
-          return [row_index, col_index] if object == cell
+          return [row_index, col_index] if object == cell.entity
         end
       end
       raise 'not found'
