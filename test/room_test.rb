@@ -1,13 +1,13 @@
-require 'minitest/autorun'
-require 'rrogue'
+require "minitest/autorun"
+require "rrogue"
 
 module Rrogue
   class RoomTest < Minitest::Test
-  	def test_construction
+    def test_construction
       room = Room.new(3, 2)
       assert_equal(3, room.height)
       assert_equal(2, room.width)
-    end	
+    end
 
     def test_enumerating
       room = Room.new(3, 5)
@@ -16,7 +16,7 @@ module Rrogue
     end
 
     def test_moving
-      player = Entity.new('@')
+      player = Entity.new("@")
       room = Room.new(3, 3)
       room.put(2, 2, player)
 
@@ -29,7 +29,7 @@ module Rrogue
     end
 
     def test_disallow_moving_into_walls
-      player = Entity.new('@')
+      player = Entity.new("@")
       room = Room.new(3, 3)
       room.put(1, 1, player)
 
@@ -48,7 +48,7 @@ module Rrogue
     end
 
     def test_marking_tiles_around_the_player_visible
-      player = Entity.new('@')
+      player = Entity.new("@")
       room = Room.new(4, 4)
       room.put(0, 0, player)
 

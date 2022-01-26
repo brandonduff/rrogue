@@ -3,11 +3,11 @@ module Rrogue
     attr_accessor :visibility, :seen, :entity
 
     def self.space
-      new('.')
+      new(".")
     end
 
     def self.wall
-      new('#')
+      new("#")
     end
 
     def initialize(sprite)
@@ -35,7 +35,7 @@ module Rrogue
       if visible? || seen?
         @entity.render
       else
-        ' '
+        " "
       end
     end
 

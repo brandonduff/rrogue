@@ -6,4 +6,4 @@ Rake::TestTask.new do |t|
   t.options = "--rg"
 end
 
-task :default => :test
+task default: :test

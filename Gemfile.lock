@@ -7,6 +7,7 @@ PATH
 GEM
   remote: https://rubygems.org/
   specs:
+    ast (2.4.2)
     coderay (1.1.2)
     curses (1.2.4)
     ffi (1.9.25)
@@ -36,15 +37,42 @@ GEM
     notiffany (0.1.1)
       nenv (~> 0.1)
       shellany (~> 0.0)
+    parallel (1.21.0)
+    parser (3.1.0.0)
+      ast (~> 2.4.1)
     pry (0.11.3)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
+    rainbow (3.1.1)
     rake (10.5.0)
     rb-fsevent (0.10.3)
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
+    regexp_parser (2.2.0)
+    rexml (3.2.5)
+    rubocop (1.25.0)
+      parallel (~> 1.10)
+      parser (>= 3.1.0.0)
+      rainbow (>= 2.2.2, < 4.0)
+      regexp_parser (>= 1.8, < 3.0)
+      rexml
+      rubocop-ast (>= 1.15.1, < 2.0)
+      ruby-progressbar (~> 1.7)
+      unicode-display_width (>= 1.4.0, < 3.0)
+    rubocop-ast (1.15.1)
+      parser (>= 3.0.1.1)
+    rubocop-performance (1.13.2)
+      rubocop (>= 1.7.0, < 2.0)
+      rubocop-ast (>= 0.4.0)
+    ruby-progressbar (1.11.0)
     shellany (0.0.1)
+    standard (1.7.0)
+      rubocop (= 1.25.0)
+      rubocop-performance (= 1.13.2)
+    standardrb (1.0.0)
+      standard
     thor (0.20.0)
+    unicode-display_width (2.1.0)
 
 PLATFORMS
   ruby
@@ -57,6 +85,7 @@ DEPENDENCIES
   minitest-rg
   rake (~> 10.0)
   rrogue!
+  standardrb
 
 BUNDLED WITH
    1.17.2

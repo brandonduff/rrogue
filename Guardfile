@@ -15,9 +15,9 @@
 #
 # and, you'll have to watch "config/Guardfile" instead of "Guardfile"
 
-guard :minitest, cli: '--rg' do
+guard :minitest, cli: "--rg" do
   # with Minitest::Unit
-  watch(%r{.*}) { 'test' }
+  watch(%r{.*}) { "test" }
 
   # with Minitest::Spec
   # watch(%r{^spec/(.*)_spec\.rb$})

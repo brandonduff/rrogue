@@ -12,7 +12,7 @@ module Rrogue
     end
 
     def passable?
-      @sprite != '#'
+      @sprite != "#"
     end
   end
 end
