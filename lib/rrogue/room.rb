@@ -30,7 +30,7 @@ module Rrogue
     end
 
     def move(object, row, col)
-      return if row < 0 || row >= height || col >= width || col < 0
+      return if out_of_bounds?(row, col)
       return unless @rows[row][col].passable?
 
       current_row, current_col = find_object(object)
@@ -63,6 +63,12 @@ module Rrogue
           yield cell
         end
       end
+    end
+
+    private
+
+    def out_of_bounds?(row, col)
+      row < 0 || row >= height || col >= width || col < 0
     end
   end
 end
