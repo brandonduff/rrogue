@@ -6,8 +6,8 @@ module Rrogue
     def initialize(height, width)
       @width = width
       @height = height
-      @rows = @height.times.map do |row|
-        @width.times.map do |col|
+      @rows = @height.times.map do |_row|
+        @width.times.map do |_col|
           Tile.space
         end
       end
@@ -32,6 +32,7 @@ module Rrogue
     def move(object, row, col)
       return if row < 0 || row >= height || col >= width || col < 0
       return unless @rows[row][col].passable?
+
       current_row, current_col = find_object(object)
       @rows[current_row][current_col] = Tile.space
       reset_visibility(row, col)
@@ -53,10 +54,10 @@ module Rrogue
           return [row_index, col_index] if object == cell.entity
         end
       end
-      raise "not found"
+      raise 'not found'
     end
 
-    def each(*args, &block)
+    def each
       @rows.each do |row|
         row.each do |cell|
           yield cell
